@@ -1,11 +1,10 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const placeToImport = document.querySelector(".gallery");
 placeToImport.addEventListener("click", onGalleryClick);
 const createCards = createPreviewCards(galleryItems);
+let instance = null;
 
 function createPreviewCards(img) {
   return img
@@ -30,10 +29,19 @@ function onGalleryClick(event) {
   if (!event.target.classList.contains("gallery__image")) {
     return;
   }
-  console.log(event.target);
-  const instance = basicLightbox.create(`
-    <img src="assets/images/image.png" width="800" height="600">
+
+  instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">
 `);
 
   instance.show();
+
+  document.addEventListener("keydown", onEscClick);
+}
+
+function onEscClick(event) {
+  if (event.code === "Escape") {
+    instance.close();
+    document.removeEventListener("keydown", onEscClick);
+  }
 }
