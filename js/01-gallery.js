@@ -1,28 +1,28 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const placeToImport = document.querySelector(".gallery");
-placeToImport.addEventListener("click", onGalleryClick);
-const createCards = createPreviewCards(galleryItems);
+const gallery = document.querySelector(".gallery");
+gallery.addEventListener("click", onGalleryClick);
 let instance = null;
 
-function createPreviewCards(img) {
-  return img
-    .map(({ preview, original, description }) => {
-      return `<div class="gallery__item">
-    <a class="gallery__link" href="large-image.jpg">
-      <img
-        class="gallery__image"
-        src="${preview}"
-        data-source="${original}"
-        alt="${description}"
-      />
-    </a>
-  </div>`;
-    })
-    .join("");
-}
-placeToImport.insertAdjacentHTML("beforeend", createCards);
+const galleryEl = galleryItems
+  .map(
+    ({ preview, original, description }) =>
+      `<div class="gallery__item">
+        <a class="gallery__link" href="${original}">
+            <img 
+                class="gallery__image"
+                src="${preview}"
+                data-source="${original}"
+                alt="${description}"
+                
+            />
+        </a>
+    </div>`
+  )
+  .join("");
+
+gallery.insertAdjacentHTML("beforeend", galleryEl);
 
 function onGalleryClick(event) {
   event.preventDefault();
