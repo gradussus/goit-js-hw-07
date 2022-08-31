@@ -39,9 +39,9 @@ function onGalleryClick(event) {
   document.addEventListener("keydown", onEscClick);
 }
 
-function onEscClick(event) {
-  if (event.code === "Escape") {
-    instance.close();
-    document.removeEventListener("keydown", onEscClick);
-  }
-}
+// function onEscClick(event) {
+//   if (event.code === "Escape") {
+//     instance.close();
+//     document.removeEventListener("keydown", onEscClick);
+//   }
+// }
